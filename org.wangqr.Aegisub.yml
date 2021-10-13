@@ -1,0 +1,156 @@
+app-id: org.wangqr.Aegisub
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: aegisub
+branch: stable
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: .
+    version: '21.08'
+    autodownload: true
+    autodelete: false
+cleanup-commands:
+  - mkdir -p ${FLATPAK_DEST}/lib/ffmpeg
+cleanup:
+  - /include
+  - /lib/*.a
+  - /lib/*.la
+  - /lib/pkgconfig
+  - /share/man
+finish-args:
+  - --share=ipc
+  - --socket=x11
+  - --socket=pulseaudio
+  - --device=dri
+  - --filesystem=host
+modules:
+  - shared-modules/glu/glu-9.json
+  - shared-modules/intltool/intltool-0.51.json
+  - shared-modules/linux-audio/fftw3f.json
+  - name: libass
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/pkgconfig
+    config-opts:
+      - --disable-static
+    sources:
+      - type: archive
+        url: https://github.com/libass/libass/releases/download/0.15.2/libass-0.15.2.tar.xz
+        sha256: 1be2df9c4485a57d78bb18c0a8ed157bc87a5a8dd48c661961c625cb112832fd
+
+  - name: luajit
+    buildsystem: simple
+    build-commands:
+      - make PREFIX=${FLATPAK_DEST}
+      - make install PREFIX=${FLATPAK_DEST}
+      - ln -sf /app/bin/luajit-2.1.0-beta3 /app/bin/luajit
+    cleanup:
+      - /bin
+      - /include
+      - /lib/*.a
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: git
+        url: https://luajit.org/git/luajit.git
+#        branch: v2.1
+        commit: bfd076532cdf1159df13499392879f5f4d3a9a5d
+        disable-shallow-clone: true
+
+  - name: boost
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap.sh --prefix=${FLATPAK_DEST}
+      - ./b2 -j $FLATPAK_BUILDER_N_JOBS --prefix=${FLATPAK_DEST} install
+    sources:
+      - type: archive
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2
+        sha256: fc9f85fc030e233142908241af7a846e60630aa7388de9a5fafb1f3a26840854
+        x-checker-data:
+          type: anitya
+          project-id: 6845
+          stable-only: true
+          url-template: https://boostorg.jfrog.io/artifactory/main/release/$major.$minor.$patch/source/boost_${major}_${minor}_$patch.tar.bz2
+    cleanup:
+      - /bin
+      - /include
+      - /lib/cmake
+      - /share
+
+  - name: wxWidgets
+    rm-configure: true
+    config-opts:
+      - --with-opengl
+    cleanup:
+      - /bin
+      - /include
+      - /lib/wx
+      - /share/aclocal
+      - /share/bakefile
+    sources:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.0.5/wxWidgets-3.0.5.tar.bz2
+        sha256: 8aacd56b462f42fb6e33b4d8f5d40be5abc3d3b41348ea968aa515cc8285d813
+        x-checker-data:
+          type: html
+          url: 'https://www.wxwidgets.org/downloads'
+          version-pattern: 'Latest Stable Release: ([\d\.-]+)'
+          url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
+
+  - name: ffms2
+    config-opts:
+      - --disable-static
+    sources:
+      - type: archive
+        url: https://github.com/FFMS/ffms2/archive/refs/tags/2.40.tar.gz
+        sha256: 82e95662946f3d6e1b529eadbd72bed196adfbc41368b2d50493efce6e716320
+    cleanup:
+      - /bin
+      - /share/doc
+
+  - name: uchardet
+    buildsystem: cmake
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_STATIC=0
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: archive
+        url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.7.tar.xz
+        sha256: 3fc79408ae1d84b406922fa9319ce005631c95ca0f34b205fad867e8b30e45b1
+
+  - name: aegisub-main
+    buildsystem: simple
+    build-commands:
+    - echo -e '#define BUILD_GIT_VERSION_NUMBER 9165\n#define BUILD_GIT_VERSION_STRING "3.3.2"\n#define TAGGED_RELEASE 1\n#define INSTALLER_VERSION "0.0.0"\n#define RESOURCE_BASE_VERSION 0, 0, 0' > build/git_version.h
+    - ./autogen.sh
+    - ./configure --with-boost-libdir=/app/lib --prefix=${FLATPAK_DEST} --disable-update-checker --enable-xdg-dirs --with-{uchardet,hunspell,fftw3,ffms2,libpulse} --without-{portaudio,openal,oss}
+    - make
+    - make install
+    sources:
+      - type: archive
+        url: https://github.com/wangqr/Aegisub/archive/refs/tags/v3.3.2.tar.gz
+        sha256: 9aaab8e66cef2a72368c6b7f79b2f99700321a7b9a1ca623c5e6be0e65418db5
+
+  - name: aegisub-shortcut
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 org.wangqr.Aegisub.appdata.xml /app/share/appdata/org.wangqr.Aegisub.appdata.xml
+      - install -Dm644 org.wangqr.Aegisub.desktop /app/share/applications/org.wangqr.Aegisub.desktop
+      - install -Dm644 org.wangqr.Aegisub.svg /app/share/icons/hicolor/scalable/apps/org.wangqr.Aegisub.svg
+    sources:
+      - type: file
+        path: org.wangqr.Aegisub.appdata.xml
+      - type: file
+        path: org.wangqr.Aegisub.desktop
+      - type: file
+        path: org.wangqr.Aegisub.svg
+
