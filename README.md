@@ -19,7 +19,7 @@ This is not affiliated with it and completely made from scratch.
 
 ## Known issues
 
-- Vorbis audio playback not working correctly (bad quality, out of sync), also happens for me when built from source (https://github.com/wangqr/Aegisub) and from the AUR: aegisub-git (https://github.com/Aegisub/Aegisub)
+- Weird issues with some video/audio files (bad quality, out of sync), also happens for me when built from source (https://github.com/wangqr/Aegisub), from the AUR: aegisub-git (https://github.com/Aegisub/Aegisub) and in the package on RPM Fusion
 
 - Aegisub uses the default Adwaita theme on KDE
 
