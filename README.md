@@ -1,5 +1,7 @@
 # Aegisub Flatpak
 
+📦 Flatpak Package of Aegisub for Linux
+
 Aegisub is a free, cross-platform open source tool for creating and modifying subtitles. Aegisub makes it quick and easy to time subtitles to audio, and features many powerful tools for styling them, including a built-in real-time video preview.
 
 This is the fork by wangqr packaged as a flatpak: https://github.com/wangqr/Aegisub/
@@ -23,7 +25,7 @@ This is not affiliated with it and completely made from scratch.
 
 - Aegisub uses the default Adwaita theme on KDE
 
-Let me know if you can help or have any other issues https://github.com/Nalsai/AegisubFlatpak/issues
+Let me know if you can help or have any other issues: https://github.com/Nalsai/AegisubFlatpak/issues
 
 ## Installing
 
@@ -55,5 +57,11 @@ flatpak-builder --repo=repo --force-clean build-dir org.wangqr.Aegisub.yml
 
 ```bash
 flatpak build-bundle repo aegisub.flatpak org.wangqr.Aegisub stable --runtime-repo="https://flathub.org/repo/flathub.flatpakrepo"
+```
+
+## Update submodule (shared-modules)
+
+```bash
+git submodule update --remote --merge
 ```
 
