@@ -29,19 +29,12 @@
       <image>https://flatpak.nils.moe/aegisub-screenshot.png</image>
     </screenshot>
   </screenshots>
-  <developer_name>Aegisub Group</developer_name>
   <url type="bugtracker">https://github.com/Nalsai/AegisubFlatpak/issues</url>
   <url type="faq">https://web.archive.org/web/20200803104929/http://docs.aegisub.org/manual/FAQ</url>
   <url type="help">https://web.archive.org/web/20200724093021/http://docs.aegisub.org/3.2/Main_Page/</url>-->
   <url type="homepage">https://github.com/wangqr/Aegisub</url>
-  <update_contact>contact@nalsai.de</update_contact>
-  <content_rating type="oars-1.0">
-    <content_attribute id="social-info">mild</content_attribute>
-  </content_rating>
-  <translation type="gettext">aegisub</translation>
-  <provides>
-    <binary>aegisub</binary>
-  </provides>
+  <developer_name>Aegisub Group</developer_name>
+  <content_rating type="oars-1.1" />
   <releases>
     <release version="3.3.2" date="2020-12-19"/>
   </releases>
