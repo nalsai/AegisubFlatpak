@@ -57,7 +57,7 @@ modules:
       - type: git
         url: https://luajit.org/git/luajit.git
         branch: v2.1
-        commit: a91d0d9d3bba1a936669cfac3244509a0f2ac0e3
+        commit: 4077f0c3d66ee9d74c705e605038271ceb39238e
         disable-shallow-clone: true
 
   - name: boost
