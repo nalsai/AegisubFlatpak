@@ -40,6 +40,11 @@ modules:
       - type: archive
         url: https://github.com/libass/libass/releases/download/0.15.2/libass-0.15.2.tar.xz
         sha256: 1be2df9c4485a57d78bb18c0a8ed157bc87a5a8dd48c661961c625cb112832fd
+        x-checker-data:
+          type: anitya
+          project-id: 10144
+          stable-only: true
+          url-template: https://github.com/libass/libass/releases/download/$version/libass-$version.tar.xz
 
   - name: luajit
     buildsystem: simple
@@ -106,6 +111,11 @@ modules:
       - type: archive
         url: https://github.com/FFMS/ffms2/archive/refs/tags/2.40.tar.gz
         sha256: 82e95662946f3d6e1b529eadbd72bed196adfbc41368b2d50493efce6e716320
+        x-checker-data:
+          type: anitya
+          project-id: 10144
+          stable-only: true
+          url-template: https://github.com/FFMS/ffms2/archive/refs/tags/$version.tar.gz
     cleanup:
       - /bin
       - /share/doc
@@ -125,6 +135,11 @@ modules:
       - type: archive
         url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.7.tar.xz
         sha256: 3fc79408ae1d84b406922fa9319ce005631c95ca0f34b205fad867e8b30e45b1
+        x-checker-data:
+          type: anitya
+          project-id: 9265
+          stable-only: true
+          url-template: https://www.freedesktop.org/software/uchardet/releases/uchardet-$version.tar.xz
 
   - name: aegisub
     buildsystem: simple
