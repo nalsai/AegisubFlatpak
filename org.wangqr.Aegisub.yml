@@ -42,7 +42,7 @@ modules:
         sha256: 1be2df9c4485a57d78bb18c0a8ed157bc87a5a8dd48c661961c625cb112832fd
         x-checker-data:
           type: anitya
-          project-id: 10144
+          project-id: 1560
           stable-only: true
           url-template: https://github.com/libass/libass/releases/download/$version/libass-$version.tar.xz
 
