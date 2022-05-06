@@ -35,6 +35,12 @@ I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there l
 flatpak install https://flatpak.nils.moe/org.wangqr.Aegisub.flatpakref
 ```
 
+You also need to install the ffmepg extension:
+
+```bash
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
+```
+
 ## Building
 
 ```bash
