@@ -44,6 +44,7 @@ flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
 ## Building
 
 ```bash
+flatpak install flathub org.freedesktop.Platform.ffmpeg-full//21.08
 flatpak-builder --install-deps-from=flathub --force-clean build-dir org.wangqr.Aegisub.yml
 ```
 
