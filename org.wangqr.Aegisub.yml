@@ -145,17 +145,21 @@ modules:
     buildsystem: simple
     build-commands:
       - ./autogen.sh
-      - FORCE_GIT_VERSION=v3.3.3 ./configure --with-boost-libdir=/app/lib --prefix=${FLATPAK_DEST} --disable-update-checker
-        --with-{uchardet,hunspell,fftw3,ffms2,libpulse} --without-{portaudio,openal,oss}
+      - ./configure --with-boost-libdir=/app/lib --prefix=${FLATPAK_DEST} --disable-update-checker
+        --with-{uchardet,hunspell,fftw3,ffms2,libpulse}
       - make
       - make install
       - install -Dm644 org.wangqr.Aegisub.appdata.xml /app/share/appdata/org.wangqr.Aegisub.appdata.xml
       - install -Dm644 org.wangqr.Aegisub.desktop /app/share/applications/org.wangqr.Aegisub.desktop
       - install -Dm644 org.wangqr.Aegisub.svg /app/share/icons/hicolor/scalable/apps/org.wangqr.Aegisub.svg
     sources:
-      - type: archive
-        url: https://github.com/wangqr/Aegisub/archive/refs/tags/v3.3.3.tar.gz
-        sha256: b73518ee6576abf9716dc436fb76086de83d2a387a6b41b5051e0e1b7860e9aa
+      - type: git
+        url: https://github.com/wangqr/Aegisub
+        tag: v3.3.3
+        commit: a596a88115890a6f8ecd41518f1dbcdea1f6cd61
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
       - type: file
         path: org.wangqr.Aegisub.appdata.xml
       - type: file
