@@ -28,14 +28,18 @@
     <screenshot type="default">
       <image>https://flatpak.nils.moe/aegisub-screenshot.png</image>
     </screenshot>
+    <screenshot>
+      <image>https://aeg-dev.github.io/AegiSite/img/3.2/Main-window-overview.png</image>
+    </screenshot>
   </screenshots>
   <url type="bugtracker">https://github.com/Nalsai/AegisubFlatpak/issues</url>
-  <url type="faq">https://web.archive.org/web/20200803104929/http://docs.aegisub.org/manual/FAQ</url>
-  <url type="help">https://web.archive.org/web/20200724093021/http://docs.aegisub.org/3.2/Main_Page/</url>-->
+  <url type="faq">https://aeg-dev.github.io/AegiSite/docs/3.2/faq/</url>
+  <url type="help">https://aeg-dev.github.io/AegiSite/docs/3.2/main_page/</url>
   <url type="homepage">https://github.com/wangqr/Aegisub</url>
   <developer_name>Aegisub Group</developer_name>
   <content_rating type="oars-1.1" />
   <releases>
-    <release version="3.3.2" date="2020-12-19"/>
+    <release version="3.3.3" date="2022-07-09" />
+    <release version="3.3.2" date="2020-12-19" />
   </releases>
 </component>

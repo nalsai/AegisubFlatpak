@@ -144,12 +144,9 @@ modules:
   - name: aegisub
     buildsystem: simple
     build-commands:
-      - echo -e '#define BUILD_GIT_VERSION_NUMBER 9165\n#define BUILD_GIT_VERSION_STRING
-        "3.3.2"\n#define TAGGED_RELEASE 1\n#define INSTALLER_VERSION "0.0.0"\n#define
-        RESOURCE_BASE_VERSION 0, 0, 0' > build/git_version.h
       - ./autogen.sh
-      - ./configure --with-boost-libdir=/app/lib --prefix=${FLATPAK_DEST} --disable-update-checker
-        --enable-xdg-dirs --with-{uchardet,hunspell,fftw3,ffms2,libpulse} --without-{portaudio,openal,oss}
+      - FORCE_GIT_VERSION=v3.3.3 ./configure --with-boost-libdir=/app/lib --prefix=${FLATPAK_DEST} --disable-update-checker
+        --with-{uchardet,hunspell,fftw3,ffms2,libpulse} --without-{portaudio,openal,oss}
       - make
       - make install
       - install -Dm644 org.wangqr.Aegisub.appdata.xml /app/share/appdata/org.wangqr.Aegisub.appdata.xml
@@ -157,12 +154,11 @@ modules:
       - install -Dm644 org.wangqr.Aegisub.svg /app/share/icons/hicolor/scalable/apps/org.wangqr.Aegisub.svg
     sources:
       - type: archive
-        url: https://github.com/wangqr/Aegisub/archive/refs/tags/v3.3.2.tar.gz
-        sha256: 9aaab8e66cef2a72368c6b7f79b2f99700321a7b9a1ca623c5e6be0e65418db5
+        url: https://github.com/wangqr/Aegisub/archive/refs/tags/v3.3.3.tar.gz
+        sha256: b73518ee6576abf9716dc436fb76086de83d2a387a6b41b5051e0e1b7860e9aa
       - type: file
         path: org.wangqr.Aegisub.appdata.xml
       - type: file
         path: org.wangqr.Aegisub.desktop
       - type: file
         path: org.wangqr.Aegisub.svg
-
