@@ -12,7 +12,7 @@ You can find the upstream version here: <https://github.com/Aegisub/Aegisub/>
 I'm hosting this Flatpak on my own Flatpak Repo. You can install it from there like this:
 
 ```bash
-flatpak install https://flatpak.nils.moe/org.wangqr.Aegisub.flatpakref
+flatpak install https://flatpak.nils.moe/repo/appstream/org.wangqr.Aegisub.flatpakref
 ```
 
 You also need to install the ffmepg extension:
