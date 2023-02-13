@@ -2,7 +2,7 @@ name: 📦 Build Flatpak
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -10,32 +10,30 @@ jobs:
     name: build-flatpak
     runs-on: ubuntu-latest
     container:
-      image: bilelmoussaoui/flatpak-github-actions:freedesktop-21.08
+      image: bilelmoussaoui/flatpak-github-actions:freedesktop-22.08
       options: --privileged
     strategy:
       matrix:
         arch: [x86_64]
-      # Don't fail the whole workflow if one architecture fails
       fail-fast: false
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
-          submodules: 'true'
+          submodules: "true"
       - run: git config --global --add protocol.file.allow always
       - name: Build Flatpak
-        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v4
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v4
         with:
-          bundle:  org.wangqr.Aegisub.flatpak
+          bundle: org.wangqr.Aegisub.flatpak
           manifest-path: org.wangqr.Aegisub.yml
           cache-key: flatpak-builder-${{ github.sha }}
           arch: ${{ matrix.arch }}
           branch: stable
       - name: Deploy
         if: github.event_name != 'pull_request'
-        uses: bilelmoussaoui/flatpak-github-actions/flat-manager@v3
+        uses: flatpak/flatpak-github-actions/flat-manager@v3
         with:
           repository: ""
           flat-manager-url: https://flatpak.hachiman.nils.moe
           token: ${{ secrets.FLATMAN_TOKEN }}
-
