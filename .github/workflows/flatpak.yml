@@ -18,12 +18,12 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: "true"
       - run: git config --global --add protocol.file.allow always
       - name: Build Flatpak
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v4
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: org.wangqr.Aegisub.flatpak
           manifest-path: org.wangqr.Aegisub.yml
@@ -32,7 +32,7 @@ jobs:
           branch: stable
       - name: Deploy
         if: github.event_name != 'pull_request'
-        uses: flatpak/flatpak-github-actions/flat-manager@v3
+        uses: flatpak/flatpak-github-actions/flat-manager@v4
         with:
           repository: ""
           flat-manager-url: https://flatpak.hachiman.nils.moe
