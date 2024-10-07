@@ -1,6 +1,6 @@
 app-id: org.wangqr.Aegisub
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: aegisub
 default-branch: stable
@@ -8,7 +8,7 @@ add-extensions:
   org.freedesktop.Platform.ffmpeg-full:
     directory: lib/ffmpeg
     add-ld-path: .
-    version: '23.08'
+    version: '24.08'
     autodownload: true
     autodelete: false
 cleanup-commands:
@@ -71,8 +71,8 @@ modules:
       - ./b2 -j $FLATPAK_BUILDER_N_JOBS --prefix=${FLATPAK_DEST} install
     sources:
       - type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2
-        sha256: 1e19565d82e43bc59209a168f5ac899d3ba471d55c7610c677d4ccf2c9c500c0
+        url: https://archives.boost.io/release/1.86.0/source/boost_1_86_0.tar.bz2
+        sha256: 1bed88e40401b2cb7a1f76d4bab499e352fa4d0c5f31c0dbae64e24d34d7513b
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -110,13 +110,12 @@ modules:
     config-opts:
       - --disable-static
     sources:
-      # using up-to-date commit from master due to https://github.com/FFMS/ffms2/issues/379
       - type: git
         url: https://github.com/FFMS/ffms2.git
-        commit: ff61bca13e2c5fb99c0450620c9244f415ec29c4
+        commit: 25cef14386fcaaa58ee547065deee8f6e82c56a2
       #- type: archive
-      #  url: https://github.com/FFMS/ffms2/archive/refs/tags/2.40.tar.gz
-      #  sha256: 82e95662946f3d6e1b529eadbd72bed196adfbc41368b2d50493efce6e716320
+      #  url: https://github.com/FFMS/ffms2/archive/refs/tags/5.0.tar.gz
+      #  sha256: 7770af0bbc0063f9580a6a5c8e7c51f1788f171d7da0b352e48a1e60943a8c3c
       #  x-checker-data:
       #    type: anitya
       #    project-id: 10144
