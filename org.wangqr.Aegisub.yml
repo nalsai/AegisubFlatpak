@@ -110,13 +110,12 @@ modules:
     config-opts:
       - --disable-static
     sources:
-      # using up-to-date commit from master due to https://github.com/FFMS/ffms2/issues/379
       - type: git
         url: https://github.com/FFMS/ffms2.git
-        commit: ff61bca13e2c5fb99c0450620c9244f415ec29c4
+        commit: 25cef14386fcaaa58ee547065deee8f6e82c56a2
       #- type: archive
-      #  url: https://github.com/FFMS/ffms2/archive/refs/tags/2.40.tar.gz
-      #  sha256: 82e95662946f3d6e1b529eadbd72bed196adfbc41368b2d50493efce6e716320
+      #  url: https://github.com/FFMS/ffms2/archive/refs/tags/5.0.tar.gz
+      #  sha256: 7770af0bbc0063f9580a6a5c8e7c51f1788f171d7da0b352e48a1e60943a8c3c
       #  x-checker-data:
       #    type: anitya
       #    project-id: 10144
