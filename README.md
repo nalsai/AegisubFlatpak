@@ -1,5 +1,10 @@
 # Aegisub Flatpak
 
+> [!CAUTION]
+>
+> Aegisub is now on Flathub (<https://flathub.org/apps/org.aegisub.Aegisub>).  
+> Therefore this repository is no longer maintained.
+
 📦 Flatpak Package of Aegisub for Linux
 
 Aegisub is a free, cross-platform open source tool for creating and modifying subtitles. Aegisub makes it quick and easy to time subtitles to audio, and features many powerful tools for styling them, including a built-in real-time video preview.
