@@ -32,7 +32,7 @@ jobs:
           branch: stable
       - name: Deploy
         if: github.event_name != 'pull_request'
-        uses: flatpak/flatpak-github-actions/flat-manager@v4
+        uses: flatpak/flatpak-github-actions/flat-manager@master
         with:
           repository: ""
           flat-manager-url: https://flatpak.hachiman.nils.moe
